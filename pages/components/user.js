@@ -12,3 +12,5 @@ export const User = ({user}) => {
 User.propTypes = {
 	user: PropTypes.any
 };
+
+export default User;

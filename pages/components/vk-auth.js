@@ -51,3 +51,5 @@ export const VkAuth = () => {
 		</div>
 	);
 };
+
+export default VkAuth;

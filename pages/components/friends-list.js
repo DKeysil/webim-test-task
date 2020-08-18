@@ -35,3 +35,5 @@ FriendsList.propTypes = {
 	vk: PropTypes.any,
 	userId: PropTypes.any
 };
+
+export default FriendsList;
