@@ -1,33 +1,52 @@
-import Vk, {Auth} from 'react-vk';
+import Vk from 'react-vk';
 import React, {useState} from 'react';
 import {FriendsList} from './friends-list';
+import styles from '../../styles/Home.module.css';
 
 export const VkAuth = () => {
-	const [status, setStatus] = useState(null);
 	const [vkApi, setVkApi] = useState(null);
+	const [id, setId] = useState(null);
+	const [status, setStatus] = useState(null);
 
 	return (
 		<div>
 			<Vk
 				apiId={7569953}
 				onApiAvailable={vk => {
+					setVkApi(vk);
 					vk.Auth.getLoginStatus(({status}) => {
-						setStatus(status);
-						setVkApi(vk);
+						if (status === 'connected') {
+							setTimeout(() => {
+								vk.Auth.getLoginStatus(({status, session: {user}}) => {
+									setStatus(status);
+									setId(user.id);
+								}, true);
+							}, 0);
+						}
 					});
 				}}
 			>
-				{status === 'connected' ? (
-					<FriendsList vk={vkApi}/>
-				) : (
-					<Auth
-						options={{
-							onAuth: () => {
-								setStatus('connected');
-							}
-						}}
-					/>
-				)}
+				{
+					(id === null) ?
+						(
+							<button
+								className={styles.button} onClick={() => {
+									vkApi.Auth.login(response => {
+										if (response.session !== null) {
+											const {session: {user}} = response;
+											setId(user.id);
+										}
+									}, 2);
+								}}
+							>
+								Войти через вконтакте
+							</button>
+						) :
+						(
+							<FriendsList vk={vkApi} userId={id}/>
+						)
+				}
+
 			</Vk>
 		</div>
 	);

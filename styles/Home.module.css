@@ -6,3 +6,34 @@
   justify-content: center;
   align-items: center;
 }
+
+.friendsContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.friendContainer {
+  margin: 20px;
+  box-shadow: 2px 2px 2px 2px gray;
+}
+
+.friendContainer p {
+  text-align: center;
+}
+
+.button {
+  display: inline-block;
+  font-family: -apple-system,BlinkMacSystemFont,'Roboto','Helvetica Neue',Geneva,"Noto Sans Armenian","Noto Sans Bengali","Noto Sans Cherokee","Noto Sans Devanagari","Noto Sans Ethiopic","Noto Sans Georgian","Noto Sans Hebrew","Noto Sans Kannada","Noto Sans Khmer","Noto Sans Lao","Noto Sans Osmanya","Noto Sans Tamil","Noto Sans Telugu","Noto Sans Thai",sans-serif,arial,Tahoma,verdana;
+  color: #ffffff;
+  box-sizing: border-box;
+  padding: 7px 16px 8px;
+  text-align: center;
+  background-color: #5181b8;
+  border: 0;
+  font-size: 14px;
+  line-height: 20px;
+  width: 200px;
+  margin-top: 5px;
+  margin-right: 15px;
+  outline: none;
+}
