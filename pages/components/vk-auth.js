@@ -6,7 +6,6 @@ import styles from '../../styles/Home.module.css';
 export const VkAuth = () => {
 	const [vkApi, setVkApi] = useState(null);
 	const [id, setId] = useState(null);
-	const [status, setStatus] = useState(null);
 
 	return (
 		<div>
@@ -17,8 +16,7 @@ export const VkAuth = () => {
 					vk.Auth.getLoginStatus(({status}) => {
 						if (status === 'connected') {
 							setTimeout(() => {
-								vk.Auth.getLoginStatus(({status, session: {user}}) => {
-									setStatus(status);
+								vk.Auth.getLoginStatus(({session: {user}}) => {
 									setId(user.id);
 								}, true);
 							}, 0);
@@ -30,6 +28,7 @@ export const VkAuth = () => {
 					(id === null) ?
 						(
 							<button
+								type="button"
 								className={styles.button} onClick={() => {
 									vkApi.Auth.login(response => {
 										if (response.session !== null) {
