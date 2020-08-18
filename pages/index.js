@@ -1,7 +1,7 @@
 import React from 'react';
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
-import {VkAuth} from './components/vk-auth';
+import {VkAuth} from '../components/vk-auth';
 
 const Home = () => {
 	return (

@@ -1,7 +1,7 @@
 import Vk from 'react-vk';
 import React, {useState} from 'react';
 import {FriendsList} from './friends-list';
-import styles from '../../styles/Home.module.css';
+import styles from '../styles/Home.module.css';
 
 export const VkAuth = () => {
 	const [vkApi, setVkApi] = useState(null);

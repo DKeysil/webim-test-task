@@ -1,7 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {User} from './user';
-import styles from '../../styles/Home.module.css';
+import styles from '../styles/Home.module.css';
 
 export const FriendsList = ({vk, userId}) => {
 	const [friendsList, setFriendsList] = useState(null);
