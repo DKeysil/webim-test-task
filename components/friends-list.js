@@ -5,21 +5,30 @@ import styles from '../styles/Home.module.css';
 
 export const FriendsList = ({vk, userId}) => {
 	const [friendsList, setFriendsList] = useState(null);
+	const [name, setName] = useState(null);
 
 	useEffect(() => {
 		vk.Api.call('friends.get', {user_id: userId, v: '5.122'},
 			data => {
-				vk.Api.call('users.get', {user_ids: data.response.items.slice(0, 5).join(','), fields: 'photo_max', v: '5.122'},
+				let randInt = Math.floor(Math.random() * data.response.items.length);
+				if (randInt < 5) {
+					(randInt = 5);
+				}
+
+				vk.Api.call('users.get', {user_ids: data.response.items.slice(randInt - 5, randInt).join(','), fields: 'photo_max', v: '5.122'},
 					users => {
 						setFriendsList(users.response);
-						console.log(users.response);
 					});
+			});
+		vk.Api.call('users.get', {user_ids: [userId], v: '5.122'},
+			({response: {0: {first_name, last_name}}}) => {
+				setName(first_name + ' ' + last_name);
 			});
 	}, [userId]);
 
 	return (
 		<div>
-			<b>Список друзей:</b>
+			<h3>Друзья пользователя с именем {name}:</h3>
 			{
 				(friendsList === null) ? null : (
 
